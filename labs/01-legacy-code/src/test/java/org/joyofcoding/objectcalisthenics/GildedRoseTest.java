@@ -18,7 +18,8 @@ public class GildedRoseTest {
     @Before
     public void setup() {
         gildedRose = new GildedRose();
-        items = gildedRose.makeItems();
+        Items allItems = new Items();
+        items = allItems.makeItems();
     }
 
     @Test
@@ -39,7 +40,7 @@ public class GildedRoseTest {
     @Test
     public void after_one_day_with_sufuras_having_sellIn_lesser_than_zero_and_quality_greater_than_zero() {
         items = new ArrayList<Item>();
-        items.add(new Item("Sulfuras, Hand of Ragnaros", new NumberOfDays(-1), new Value(1)));
+        items.add(new Item("Sulfuras, Hand of Ragnaros", -1, 1));
         repeatUpdateQuality(1);
 
         ItemsAssert.assertThat(items)
@@ -117,6 +118,6 @@ public class GildedRoseTest {
     private Item aRandomBackstagePass() {
         int quality = randomQuality();
         int sellIn = randomSellIn();
-        return new Item("Backstage passes to a TAFKAL80ETC concert", new NumberOfDays(sellIn), new Value(quality));
+        return new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quality);
     }
 }
